@@ -62,8 +62,7 @@ private:
         delete head;
     }
 
-    int findLl(Node<T>* head, int val){
-        static int index = 0;
+    int findLl(Node<T>* head, int val, int& index){
         if(head->val == val){
             return index;
         }
@@ -72,7 +71,7 @@ private:
             return -1;
         }
         index++;
-        findLl(head->next, val);
+        findLl(head->next, val, index);
         return index;
     }
 
@@ -91,6 +90,7 @@ private:
         }
         count++;
         setVal(head->next, index, val);
+        count = 0;
         return retVal;
     }
 
@@ -149,7 +149,8 @@ public:
     }
 
     int find(int val){
-        return findLl(this->head, val);
+        int index = 0;
+        return findLl(this->head, val, index);
     }
 
     int set_val(unsigned int index, int val){

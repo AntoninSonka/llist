@@ -6,14 +6,16 @@ int main () {
     list.push_back(2);
     list.push_back(5);
     list.print();
-    std::cout << "\n" << list.find(2) << "\n";
+    std::cout << "\nfind 2: " << list.find(2) << "\n";
+    std::cout << "\nfind 1: " << list.find(1) << "\n";
+    std::cout << "\nfind 5: " << list.find(5) << "\n";
     list.pop_back();
     list.print();
     list.push_back(10);
     list.print();
-    std::cout << "\n" << list.get_val(2) << "\n";
-    list.set_val(0, 5);
-    list.print();
+    std::cout << "\nget val on 2: " << list.get_val(2) << "\n";
+    std::cout << "\nget val on 0: " << list.get_val(0) << "\n";
+    std::cout << "\nget val on 1: " << list.get_val(1) << "\n";
     list.delete_llist();
     return 0;
 }
