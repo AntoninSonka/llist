@@ -68,6 +68,7 @@ private:
             return index;
         }
         else if(head->next == NULL){
+            index = 0;
             return -1;
         }
         index++;
