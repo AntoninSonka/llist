@@ -106,6 +106,7 @@ private:
         }
         count++;
         getVal(head->next, index);
+        count = 0;
         return retVal;
     }
 
