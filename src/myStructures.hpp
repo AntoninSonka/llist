@@ -3,6 +3,11 @@
 #include <cstddef>
 #include <iostream>
 
+
+namespace ms {
+
+namespace ll {
+
 template <typename T>
 class Node {
 public:
@@ -12,6 +17,7 @@ public:
 
 template <typename T>
 class LinkedList {
+
 private:
 
     bool hasBeenDeleted = false;
@@ -65,7 +71,7 @@ private:
             return -1;
         }
         index++;
-        find(head->next, val);
+        findLl(head->next, val);
         return index;
     }
 
@@ -152,3 +158,7 @@ public:
         return getVal(this->head, index);
     }
 };
+
+}
+
+}
