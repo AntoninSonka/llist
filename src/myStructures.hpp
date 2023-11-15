@@ -2,6 +2,7 @@
 
 #include <cstddef>
 #include <iostream>
+#include <type_traits>
 
 
 namespace ms {
@@ -111,6 +112,30 @@ private:
         return retVal;
     }
 
+    void insertOn(Node<T>* head, int index, T val){
+        static int count = -1;
+        if(index == -2){
+            Node<T>* insertedNode = new Node<T>;
+            insertedNode->val = val;
+            insertedNode->next = head;
+            this->head = insertedNode;
+            return;
+        }
+        if(count == index){
+            Node<T>* insertedNode = new Node<T>;
+            insertedNode->val = val;
+            insertedNode->next = head->next;
+            head->next = insertedNode;
+            return;
+        }
+        if(head->next == NULL){
+            return;
+        }
+        count++;
+        insertOn(head->next, index, val);
+        count = -1;
+    }
+
 public:
 
     Node<T>* head;
@@ -131,6 +156,11 @@ public:
     }
 
     //methods
+    
+    void insert(T val, int index){
+        index -= 2;
+        insertOn(this->head, index, val);
+    }
 
     void push_back(T val){
         pushBack(this->head, val);
