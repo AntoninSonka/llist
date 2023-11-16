@@ -136,6 +136,30 @@ private:
         count = -1;
     }
 
+    void removeOn(Node<T>* head, int index){
+        static int count = 0;
+        if(index == 0){
+            this->head->val = this->head->next->val;
+            Node<T>* tempNode = head->next->next;
+            delete head->next;
+            head->next = tempNode;
+            return;
+        }
+        if(count == (index - 1)){
+            Node<T>* tempNode = head->next->next;
+            delete head->next;
+            head->next = tempNode;
+            return;
+        }
+
+        if(head->next == NULL){
+            return;
+        }
+        count++;
+        removeOn(head->next, index);
+        count = 0;
+    }
+
 public:
 
     Node<T>* head;
@@ -160,6 +184,10 @@ public:
     void insert(T val, int index){
         index -= 2;
         insertOn(this->head, index, val);
+    }
+
+    void remove(T index){
+        removeOn(this->head, index);
     }
 
     void push_back(T val){

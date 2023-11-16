@@ -16,7 +16,6 @@ int main () {
     std::cout << "\nget val on 2: " << list.get_val(2) << "\n";
     std::cout << "\nget val on 0: " << list.get_val(0) << "\n";
     std::cout << "\nget val on 1: " << list.get_val(1) << "\n";
-
     list.push_back(2);
     list.push_back(3);
     list.push_back(4);
@@ -29,6 +28,10 @@ int main () {
     list.insert(-3, 0);
     list.print();
     list.insert(6, 6);
+    list.print();
+    list.remove(1);
+    list.print();
+    list.remove(0);
     list.print();
 
     list.delete_llist();
