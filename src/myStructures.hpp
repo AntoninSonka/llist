@@ -222,4 +222,106 @@ public:
 
 }
 
+namespace bst {
+
+template <typename T>
+class Node {
+public:
+    T val;
+    Node* lChild;
+    Node* rChild;
+    Node(){
+        this->lChild = NULL;
+        this->rChild = NULL;
+    }
+};
+
+template <typename T>
+class BST {
+
+private:
+
+    Node<T>* parent;
+
+    void addEl(Node<T>* parent, T val){
+
+        if(val <= parent->val){
+            if(parent->lChild == NULL){
+                Node<T>* newNode = new Node<T>;
+                newNode->val = val;
+                parent->lChild = newNode;
+                return;
+            }
+            addEl(parent->lChild, val);
+        }
+        else if(val > parent->val){
+            if(parent->rChild == NULL){
+                Node<T>* newNode = new Node<T>;
+                newNode->val = val;
+                parent->rChild = newNode;
+                return;
+            }
+            addEl(parent->rChild, val);
+        }
+    }
+
+    T* accessVal(Node<T>* parent, T val){
+        static T* retVal =  &parent->val;
+        if(parent->val == val){
+            retVal = &parent->val;
+        }
+        if(parent->lChild == NULL){
+            return nullptr;
+        }
+        else if(val < parent->val){
+            accessVal(parent->lChild, val);
+        }
+        if(parent->rChild == NULL){
+            return nullptr;
+        }
+        else if(val > parent->val){
+            accessVal(parent->rChild, val);
+        }
+
+        return retVal;
+    }
+
+    Node<T>* accessNode(Node<T>* parent, T val){
+        static Node<T>* retVal = parent;
+        if(parent->val == val){
+            retVal = parent;
+        }
+        if(parent->lChild == NULL){
+            return nullptr;
+        }
+        else if(val < parent->val){
+            accessNode(parent->lChild, val);
+        }
+        if(parent->rChild == NULL){
+            return nullptr;
+        }
+        else if(val > parent->val){
+            accessNode(parent->rChild, val);
+        }
+        return retVal;
+    }
+
+public:
+
+    void add_el(T val){
+        addEl(this->parent, val);
+    }
+
+    T* access_val(T val){
+        return accessVal(this->parent, val);
+    }
+
+    Node<T>* access_node(T val){
+        return accessNode(this->parent, val);
+    }
+
+};
+
+}
+
 }

@@ -8,7 +8,7 @@ int main () {
         list.push_back(i + 2);
     }
     list.print();
-    
+    list.delete_llist();
 
     return 0;
 }
